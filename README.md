@@ -20,6 +20,7 @@ The bounty was about implementing atleast 2 or more(if u wish) features given be
      `endsIn` represents the number of **days** from now till the quest ends.
    - The startTime is calculated as `currentTimestamp + startIn * 1 days` and endTime is calculated as `currentTimestamp + endsIn * 1 days`. Checkout the function in the smart contract and read the comments to understand more.
    - For testing purpose, you may change the time unit from days to some smaller unit like `minutes` in the formula(see lines 84, 86, 117, 118, 127) in the contract.
+
    #### ii) Functionalities for editting and deleting quests.
    - The ability to Edit and delete quests is also important as it allows the admin to 
        - edit key info about the quest, say for ex if a quest was created with incorrect information by mistake, the edit function allows the admin to correct the information.
@@ -30,20 +31,22 @@ The bounty was about implementing atleast 2 or more(if u wish) features given be
        - The delete functionality allows the admin to delete a quest, it takes quest id as a parameter and checks if the quest exists and if the quest is not in progress i.e has not started yet or has already ended, this check is because deleting an ongoing quest is not desirable. It has to be deleted either before it starts or after it ends.
     
    - Then I also implemented the other two functionalities i.e introducing a new data structure called campaign, that represents a stackup campaign.
+   
    #### Campaign struct
-     - This is currently a simple struct that contains the fields
-         - title - The campaign's title/name
-         - rewardPool - The campaign's total reward pool amount.
-         - noOfQuests - Total no.of quests in the campaign.
-         - An array of Quest structs - to store info about the quests in the campaign.
+   - This is currently a simple struct that contains the fields
+       - title - The campaign's title/name
+       - rewardPool - The campaign's total reward pool amount.
+       - noOfQuests - Total no.of quests in the campaign.
+       - An array of Quest structs - to store info about the quests in the campaign.
+   
   #### Review Submissions
-     -  The final functionality also represents the final stage of a quest's journey in Stackup. 
-     -  The reviewing stage is where the admin carefully reviews the submissions made by a stackie and assigns one of the 3 possible results[REWARDED, APPROVED, REJECTED] to the submission.
-     - In the smart contract, these 3 values are added and stored in an enum `playerQuestStatus`(Read comments above this enum).
-     - The reviewSubmission function in the contract takes 3 parameters as input i.e an address of the stackie for whom the admin wants to assign a result, the questId for which the result is being assigned and a result value of type playerQuestStatus representing one of the 3 possible values.
-     - The function also checks first if the quest exists and if the player has submitted the quest or not. If yes, then it assigns the given result value to the stackie's address for that questId in the `playerQuestStatuses` mapping.
+  -  The final functionality also represents the final stage of a quest's journey in Stackup. 
+  -  The reviewing stage is where the admin carefully reviews the submissions made by a stackie and assigns one of the 3 possible results[REWARDED, APPROVED, REJECTED] to the submission.
+  - In the smart contract, these 3 values are added and stored in an enum `playerQuestStatus`(Read comments above this enum).
+  - The reviewSubmission function in the contract takes 3 parameters as input i.e an address of the stackie for whom the admin wants to assign a result, the questId for which the result is being assigned and a result value of type playerQuestStatus representing one of the 3 possible values.
+  - The function also checks first if the quest exists and if the player has submitted the quest or not. If yes, then it assigns the given result value to the stackie's address for that questId in the `playerQuestStatuses` mapping.
   
-  `Try to Implement all of the functionalities was a great learning experience and quite fun too #UPUPSTACKUP` 
+  `Trying to Implement all of the functionalities was a great learning experience and quite fun too #UPUPSTACKUP` 
          
  
         
