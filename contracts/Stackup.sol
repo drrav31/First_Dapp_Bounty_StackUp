@@ -81,9 +81,9 @@ contract Stackup {
     quests[nextQuestId].reward = reward_;
     quests[nextQuestId].numberOfRewards = numberOfRewards_;
     // Assign the startTime of the quest as the (currentTime + noOfDays) it starts in
-    quests[nextQuestId].startTime = block.timestamp + (startsIn * 1 minutes); 
+    quests[nextQuestId].startTime = block.timestamp + (startsIn * 1 days); 
     // Assign the endTime of the quest as the (currentTime + noOfDays) it ends in.
-    quests[nextQuestId].endTime = block.timestamp + (endsIn * 1 minutes);
+    quests[nextQuestId].endTime = block.timestamp + (endsIn * 1 days);
     nextQuestId++;
   }
 
@@ -114,8 +114,8 @@ contract Stackup {
             quests[questId].title = title_;
             quests[questId].reward = reward_;
             quests[questId].numberOfRewards = numberOfRewards_;
-            quests[questId].startTime = block.timestamp + (startsIn * 1 minutes);
-            quests[questId].endTime = block.timestamp + (endsIn * 1 minutes);
+            quests[questId].startTime = block.timestamp + (startsIn * 1 days);
+            quests[questId].endTime = block.timestamp + (endsIn * 1 days);
         }
         //quest has started but hasn't ended yet
         else if(quests[questId].endTime > block.timestamp) {
@@ -124,7 +124,7 @@ contract Stackup {
             //increment the noOfRewards with numberOfRewards_;
             quests[questId].numberOfRewards += numberOfRewards_;
             //increment the endTime wi
-            quests[questId].endTime += (endsIn * 1 minutes); 
+            quests[questId].endTime += (endsIn * 1 days); 
         }
         //Revert with an error if called after quest ends.
         else{
@@ -174,7 +174,9 @@ contract Stackup {
       uint256 questId, 
       playerQuestStatus result) 
       external onlyAdmin questExists(questId) {
+        //Check if stackie has submitted the quest
         require(playerQuestStatuses[stackie][questId] == playerQuestStatus.SUBMITTED, "Quest not submitted by stackie");
+        //Check if the result passed is a valid value for result in the enum. 
         require(uint8(result) >= 3 && uint8(result) <= 5, "Invalid review status");
         if(result == playerQuestStatus.REWARDED){
           playerQuestStatuses[stackie][questId] = playerQuestStatus.REWARDED;
